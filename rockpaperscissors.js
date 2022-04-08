@@ -46,6 +46,7 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     let userScore = 0, computerScore = 0;
+    /*
     for (let i = 0; i < 5; i++) {
         let playerSelection = prompt("Enter rock, paper, or scissors: ");
         let result = playRound(playerSelection, computerPlay());
@@ -56,5 +57,37 @@ function game() {
             computerScore++;
         }
     }
+    */
     (userScore > computerScore) ? console.log(`User wins! ${userScore} to ${computerScore}`) : console.log(`Computer wins! ${userScore} to ${computerScore}`);
 }
+
+const results = document.querySelector('#results');
+const btns = document.querySelectorAll('button');
+let userScore = 0, computerScore = 0;
+let playCount = 0;
+btns.forEach((btn) => {
+    
+        btn.addEventListener('click', () => {
+            if (playCount < 5) {
+                let result = playRound(btn.textContent, computerPlay());
+                const div = document.createElement('div');
+                div.textContent = result;
+                results.appendChild(div);
+                if (result.includes("Win")) {
+                    userScore++;
+                }
+                else {
+                    computerScore++;
+                }
+                playCount++;
+            }
+            else {
+                let result = (userScore > computerScore) ? `User wins! ${userScore} to ${computerScore}` : `Computer wins! ${userScore} to ${computerScore}`;
+                const div = document.createElement('div');
+                div.textContent = result;
+                results.appendChild(div);
+            }
+        });
+});
+
+
