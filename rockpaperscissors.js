@@ -66,7 +66,6 @@ const btns = document.querySelectorAll('button');
 let userScore = 0, computerScore = 0;
 let playCount = 0;
 btns.forEach((btn) => {
-    
         btn.addEventListener('click', () => {
             if (playCount < 5) {
                 let result = playRound(btn.textContent, computerPlay());
